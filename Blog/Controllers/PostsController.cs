@@ -47,6 +47,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Details/5
+        [Route("posts/details/{id?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -65,6 +66,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Create
+        [Route("posts/create")]
         public IActionResult Create()
         {
             return View();
@@ -73,6 +75,7 @@ namespace Blog.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("posts/create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Content,Type")] Post post)
@@ -87,6 +90,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Route("posts/edit/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,6 +109,7 @@ namespace Blog.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("posts/edit/{id?}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,Type")] Post post)
@@ -138,6 +143,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Route("posts/delete/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,6 +162,7 @@ namespace Blog.Controllers
         }
 
         // POST: Posts/Delete/5
+        [Route("posts/delete/{id?}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
