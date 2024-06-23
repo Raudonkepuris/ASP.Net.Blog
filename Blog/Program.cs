@@ -20,6 +20,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
 }
 else
 {
@@ -36,8 +37,10 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "show-post",
+    pattern: "{controller=Posts}/{action=Display}/{type?}");
 app.MapRazorPages();
+
+app.UseStatusCodePages();
 
 app.Run();

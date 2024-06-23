@@ -36,7 +36,7 @@
             <td>
                 @foreach(var tag in item.Tags)
                 {
-                        <a asp-area="" asp-controller="Posts" asp-action="Index" asp-route-type="@item.Type" asp-route-tag="@tag.Name">@tag.Name</a>
+                        <p >@tag.Name, </p>
                 }
             </td>
             <td>

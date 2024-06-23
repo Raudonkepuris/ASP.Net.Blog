@@ -20,9 +20,30 @@ namespace Blog.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index()
+        [Route("posts/{type?}")]
+        [Route("posts/{type?}/{tag?}")]
+        public async Task<IActionResult> Index(string? type, string? tag)
         {
-            return View(await _context.Post.ToListAsync());
+            List<Post> posts;
+            if(type != null && (type != "Blog-post" || type != "Project"))
+            {
+                if (tag != null)
+                {
+                    posts = await _context.Post.Where(p => p.Type!.Contains(type))
+                        .Where(p => p.Tags.Any(pp => pp.Name.Contains(tag)))
+                        .Include(p => p.Tags).ToListAsync();
+                }
+                else
+                {
+                    posts = await _context.Post.Where(p => p.Type!.Contains(type))
+                        .Include(p => p.Tags).ToListAsync();
+                }
+            }
+            else
+            {
+                posts = await _context.Post.Include(p => p.Tags).ToListAsync();
+            }
+            return View(posts);
         }
 
         // GET: Posts/Details/5
