@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blog.Data;
 using Blog.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blog.Controllers
 {
@@ -66,6 +67,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize]
         [Route("posts/create")]
         public IActionResult Create()
         {
@@ -75,6 +77,7 @@ namespace Blog.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [Route("posts/create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,6 +93,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize]
         [Route("posts/edit/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -109,6 +113,7 @@ namespace Blog.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [Route("posts/edit/{id?}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -143,6 +148,7 @@ namespace Blog.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize]
         [Route("posts/delete/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -162,6 +168,7 @@ namespace Blog.Controllers
         }
 
         // POST: Posts/Delete/5
+        [Authorize]
         [Route("posts/delete/{id?}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
