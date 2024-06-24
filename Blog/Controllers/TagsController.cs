@@ -29,6 +29,7 @@ namespace Blog.Controllers
 
         // GET: Tags/Details/5
         [Authorize]
+        [Route("admin/tags/details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +49,7 @@ namespace Blog.Controllers
 
         // GET: Tags/Create
         [Authorize]
+        [Route("admin/tags/create")]
         public IActionResult Create()
         {
             return View();
@@ -59,6 +61,7 @@ namespace Blog.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("admin/tags/create")]
         public async Task<IActionResult> Create([Bind("Id,Name")] Tag tag)
         {
             if (ModelState.IsValid)
@@ -72,6 +75,7 @@ namespace Blog.Controllers
 
         // GET: Tags/Edit/5
         [Authorize]
+        [Route("admin/tags/edit/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +95,7 @@ namespace Blog.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
+        [Route("admin/tags/edit/{id?}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Tag tag)
@@ -125,6 +130,7 @@ namespace Blog.Controllers
 
         // GET: Tags/Delete/5
         [Authorize]
+        [Route("admin/tags/delete/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +150,7 @@ namespace Blog.Controllers
 
         // POST: Tags/Delete/5
         [Authorize]
+        [Route("admin/tags/delete/{id?}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

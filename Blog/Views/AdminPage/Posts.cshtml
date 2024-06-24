@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@model IEnumerable<Blog.Models.Post>
+﻿@model IEnumerable<Blog.Models.Post>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,12 +6,9 @@
 
 <h1>Index</h1>
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
+<p>
+    <a asp-controller="Posts" asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -26,10 +21,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tags)
             </th>
-            @if (SignInManager.IsSignedIn(User))
-            {
-                <th></th>
-            }
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -47,14 +42,14 @@
                         <a asp-area="" asp-controller="Posts" asp-action="Index" asp-route-type="@item.Type" asp-route-tag="@tag.Name">@tag.Name</a>
                 }
             </td>
-            @if (SignInManager.IsSignedIn(User))
-            {
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
-            }
+            <td>
+                <a asp-controller="Posts" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Posts" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-controller="Posts"  asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
         </tr>
 }
     </tbody>
