@@ -1,4 +1,6 @@
 using Blog.Data;
+using Blog.Interfaces;
+using Blog.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IPostsDependancy, PostsDependancy>();
+builder.Services.AddScoped<ITagsDependancy, TagsDependancy>();
 
 var app = builder.Build();
 
@@ -42,5 +47,7 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.UseStatusCodePages();
+
+
 
 app.Run();
