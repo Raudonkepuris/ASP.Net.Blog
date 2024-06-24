@@ -11,11 +11,13 @@ namespace Blog.Controllers
     {
         private readonly IPostsDependancy _postsDependancy;
         private readonly ITagsDependancy _tagsDependancy;
+        private readonly IApprovedEmailsDependancy _approvedEmailsDependancy;
 
-        public AdminPageController(IPostsDependancy postsDependancy, ITagsDependancy tagsDependancy)
+        public AdminPageController(IPostsDependancy postsDependancy, ITagsDependancy tagsDependancy, IApprovedEmailsDependancy approvedEmailsDependancy)
         {
             _postsDependancy = postsDependancy;
             _tagsDependancy = tagsDependancy;
+            _approvedEmailsDependancy = approvedEmailsDependancy;
         }
 
         [Authorize]
@@ -39,6 +41,14 @@ namespace Blog.Controllers
         {
             List<Tag> tags = await _tagsDependancy.GetAllTags();
             return View(tags);
+        }
+
+        [Authorize]
+        [Route("admin/approvedemails")]
+        public async Task<IActionResult> ApprovedEmails()
+        {
+            List<ApprovedEmail> approvedEmails =  await _approvedEmailsDependancy.GetAllApprovedEmails();
+            return View(approvedEmails);
         }
 
     }

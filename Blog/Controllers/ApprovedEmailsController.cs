@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blog.Data;
 using Blog.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blog.Controllers
 {
@@ -20,12 +21,15 @@ namespace Blog.Controllers
         }
 
         // GET: ApprovedEmails
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ApprovedEmail.ToListAsync());
         }
 
         // GET: ApprovedEmails/Details/5
+        [Authorize]
+        [Route("admin/approvedemails/details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +48,8 @@ namespace Blog.Controllers
         }
 
         // GET: ApprovedEmails/Create
+        [Authorize]
+        [Route("admin/approvedemails/create")]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +58,8 @@ namespace Blog.Controllers
         // POST: ApprovedEmails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
+        [Route("admin/approvedemails/create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email")] ApprovedEmail approvedEmail)
@@ -66,6 +74,8 @@ namespace Blog.Controllers
         }
 
         // GET: ApprovedEmails/Edit/5
+        [Authorize]
+        [Route("admin/approvedemails/edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +94,8 @@ namespace Blog.Controllers
         // POST: ApprovedEmails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
+        [Route("admin/approvedemails/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Email")] ApprovedEmail approvedEmail)
@@ -117,6 +129,8 @@ namespace Blog.Controllers
         }
 
         // GET: ApprovedEmails/Delete/5
+        [Authorize]
+        [Route("admin/approvedemails/delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +149,8 @@ namespace Blog.Controllers
         }
 
         // POST: ApprovedEmails/Delete/5
+        [Authorize]
+        [Route("admin/approvedemails/delete")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

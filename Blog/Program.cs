@@ -18,6 +18,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IPostsDependancy, PostsDependancy>();
 builder.Services.AddScoped<ITagsDependancy, TagsDependancy>();
+builder.Services.AddScoped<IApprovedEmailsDependancy, ApprovedEmailsDependancy>();
 
 var app = builder.Build();
 
