@@ -12,5 +12,6 @@ namespace Blog.Data
         }
         public DbSet<Blog.Models.Post> Post { get; set; } = default!;
         public DbSet<Blog.Models.Tag> Tag { get; set; } = default!;
+        public DbSet<Blog.Models.ApprovedEmail> ApprovedEmail { get; set; } = default!;
     }
 }
