@@ -21,5 +21,12 @@ namespace Blog.Services
         {
             return await _context.ApprovedEmail.ToListAsync();
         }
+
+        public async Task<bool> IsEmailApproved(string email)
+        {
+            List<ApprovedEmail> emails = await _context.ApprovedEmail.Where(p => p.Email.ToLower() == email.ToLower()).ToListAsync();
+            bool isapproved = emails.Count != 0;
+            return isapproved;
+        }
     }
 }

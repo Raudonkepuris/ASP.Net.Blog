@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Blog.Validation;
 
 namespace Blog.Areas.Identity.Pages.Account
 {
@@ -81,6 +82,7 @@ namespace Blog.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [IsApprovedEmail]
             [Required]
             [EmailAddress]
             public string Email { get; set; }

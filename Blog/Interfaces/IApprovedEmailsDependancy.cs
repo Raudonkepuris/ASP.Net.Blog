@@ -7,5 +7,7 @@ namespace Blog.Interfaces
     {
         [Authorize]
         Task<List<ApprovedEmail>> GetAllApprovedEmails();
+        [Authorize]
+        Task<bool> IsEmailApproved(string email);
     }
 }
